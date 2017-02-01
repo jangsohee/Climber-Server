@@ -1,6 +1,6 @@
 import base64
 
-def strToImgFile(img, filename):
+def save_img(img, filename):
     img_bytes = img.encode('ascii')
     decoded = base64.b64decode(img_bytes)
     f = open(filename, 'wb')
