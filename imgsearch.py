@@ -1,4 +1,5 @@
 import base64
+import os
 
 def save_img(img, filename):
     img_bytes = img.encode('ascii')
@@ -6,3 +7,6 @@ def save_img(img, filename):
     f = open(filename, 'wb')
     f.write(decoded)
     f.close()
+
+def removeImgFile(filename):
+    os.remove(filename)
