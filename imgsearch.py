@@ -8,5 +8,5 @@ def save_img(img, filename):
     f.write(decoded)
     f.close()
 
-def removeImgFile(filename):
+def remove_img(filename):
     os.remove(filename)
