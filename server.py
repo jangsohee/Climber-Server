@@ -1,5 +1,4 @@
 import thriftpy
-import base64
 oil_thrift = thriftpy.load("oil.thrift", module_name="oil_thrift")
 
 from thriftpy.rpc import make_server
