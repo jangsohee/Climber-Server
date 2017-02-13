@@ -1,7 +1,9 @@
 import requests
-import pymysql
+import threading
 import sys
 from bs4 import BeautifulSoup
+
+celeb_list = ['송중기', '러블리즈', '아이오아이']
 
 def climber_crawler(celeb):
    #max_pages
@@ -22,4 +24,13 @@ def climber_crawler(celeb):
                 url = a.get('href')
                 print(user, comment, url)
 
-climber_crawler('송중기')
+
+def call_climber_crawler():
+    timer = threading.Timer(10, call_climber_crawler)
+    for celeb in celeb_list:
+        print("============== " + celeb +  "시작 ==================")
+        climber_crawler(celeb)
+        print('============== '+celeb+' 종료 ==================')
+    timer.start()
+
+call_climber_crawler()
