@@ -13,11 +13,12 @@ class OilHandler:
         print("ping()")
 
     def imgSearch(self, img):
-        imgsearch.remove_img(self.get_prev_filename())
+        path = "/home/ubuntu/www/imgs/"
+        imgsearch.remove_img(path, self.get_prev_filename())
         print("Image Search : previous image deleted")
 
         filename = self.get_new_filename()
-        imgsearch.save_img(img, filename)
+        imgsearch.save_img(img, path, filename)
         print("Image Search : image saved")
 
         imgsearch.make_url(filename)
@@ -27,10 +28,10 @@ class OilHandler:
 
     def get_new_filename(self):
         self.img_title += 1
-        return "~/www/imgs/" + repr(self.img_title) + ".bmp"
+        return repr(self.img_title) + ".bmp"
 
     def get_prev_filename(self):
-        return "~/www/imgs/" + repr(self.img_title) + ".bmp"
+        return repr(self.img_title) + ".bmp"
 
 server = make_server(oil_thrift.Oil, OilHandler(), '0.0.0.0', 9090)
 print("starting oil server...")
