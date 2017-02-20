@@ -1,6 +1,5 @@
 import base64
 import os
-import requests
 
 def save_img(img, filename):
     img_bytes = img.encode('ascii')
@@ -12,14 +11,11 @@ def save_img(img, filename):
 def remove_img(filename):
     os.remove(filename)
 
-def img_search(filename):
-    search_url = 'http://images.google.com/searchbyimage?site=search&image_url='
+def make_url(filename):
+    search_url = 'http://www.google.co.kr/searchbyimage?image_url='
     img_url = 'oil.kkyung.com/imgs/' + filename
     url = search_url + img_url
-    response = requests.get(url)
-    response = requests.get(response.url)
-    f = open('resp.txt', 'w')
-    f.write(response.text)
-    f.close()
+    return url
 
-img_search('a.jpg')
+save_img("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","../a.jpeg")
+remove_img("../a.jpeg")
